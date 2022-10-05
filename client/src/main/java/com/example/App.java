@@ -15,13 +15,16 @@ public class App
     {
         Socket s=new Socket("localhost",3000);
         PrintWriter pr=new PrintWriter(s.getOutputStream());
-        pr.println("ci sono");
+      
+        BufferedReader tastiera =new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("inserisci il messaggio"); 
+        String stringaUtente =tastiera.readLine();
+        
+        pr.println(stringaUtente);
         pr.flush();
 
-        InputStreamReader in=new InputStreamReader(s.getInputStream());
-        BufferedReader br=new BufferedReader(in);
-
-        String str=br.readLine();
+        BufferedReader inputStream =new BufferedReader(new InputStreamReader(s.getInputStream()));
+        String str =inputStream.readLine();
         System.out.println("Server :" +str);
         s.close();
     }
